@@ -27,7 +27,7 @@ public class AddFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null){
-            name = bundle.getString("name");
+            name = bundle.getString("ARG_NAME");
         }
     }
 

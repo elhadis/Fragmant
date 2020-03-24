@@ -26,18 +26,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        btn=findViewById(R.id.btn_main);
-list=findViewById(R.id.lis);
-
+       list=findViewById(R.id.lis);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setHasFixedSize(true);
         tasks = new ArrayList<>();
+
+
+       // list.setAdapter(adapter);
+        tasks.add(new TASK("ALMA"));
+        tasks.add(new TASK("AHMED"));
+        tasks.add(new TASK("AVIAD"));
+        tasks.add(new TASK("REHAM"));
+        tasks.add(new TASK("AVIAD"));
+        tasks.add(new TASK("NASER"));
+        tasks.add(new TASK("JOHN"));
+
+btn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent  = new Intent(getBaseContext(),addActivity.class);
+       startActivityForResult(intent,2);
+      //  startActivity(intent);
+    }
+});
 
 
         adapter = new MyAdapter(tasks, new OnItemClickListener() {
             @Override
             public void onItemClick(TASK task) {
                 Bundle bundle = new Bundle();
-                bundle.putString("name",task.getName());
+                bundle.putString("ARG_NAME",task.getName());
                 AddFragment fragment = new AddFragment();
                 fragment.setArguments(bundle);
                 FragmentManager fm = getSupportFragmentManager();
@@ -46,23 +64,10 @@ list=findViewById(R.id.lis);
                 ft.commit();
             }
         });
-        list.setAdapter(adapter);
-        tasks.add(new TASK("ALMA"));
-        tasks.add(new TASK("AHMED"));
-        tasks.add(new TASK("AVIAD"));
-        tasks.add(new TASK("REHAM"));
-        tasks.add(new TASK("AVIAD"));
-        tasks.add(new TASK("AVIAD"));
-        tasks.add(new TASK("AVIAD"));
+list.setAdapter(adapter);
 
-btn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(MainActivity.this,addActivity.class);
-       startActivityForResult(intent,2);
-      //  startActivity(intent);
-    }
-});
+
+
 
     }
 

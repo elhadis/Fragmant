@@ -21,9 +21,8 @@ EditText et_name;
             @Override
             public void onClick(View v) {
                 String name = et_name.getText().toString();
-
-                Intent intent = new Intent();
                 TASK task = new TASK(name);
+                Intent intent = new Intent();
 
                 intent.putExtra("name",task);
                 setResult(2,intent);
